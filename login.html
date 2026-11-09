@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Login Staf — Upiek Cake | UCGSO</title>
+<meta name="description" content="Halaman masuk staf UCGSO Upiek Cake untuk manajemen, kasir outlet, dan sales PO rapat.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#D97757;--gold:#C8924C;--cream:#FFF8F1;--brown:#4A352D;--green:#7EA67C;--line:#EDDFD1}
+*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;grid-template-columns:1fr 1fr;font:14px 'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--brown)}
+.brand-pane{background:linear-gradient(155deg,#fae0c9,#ffeada 56%,#f8ddc3);padding:clamp(28px,6vw,80px);display:flex;flex-direction:column;justify-content:space-between;gap:50px;position:relative;overflow:hidden}
+.logo{display:flex;align-items:center;gap:13px}.logo-mark{height:50px;width:50px;background:var(--orange);border-radius:16px;display:grid;place-items:center;color:white;font-size:26px;font-family:Fredoka}.logo strong{display:block;font-family:Fredoka;font-size:24px}.logo small{display:block;color:#806659;font-size:11px}
+.brand-pane h1{font:600 clamp(30px,4vw,54px)/1.12 Fredoka,sans-serif;margin:0 0 18px}.brand-pane p{max-width:430px;line-height:1.8;color:#785748;margin:0}.feature{display:flex;gap:12px;align-items:center;font-size:12px;color:#755747;margin-top:34px}.feature span{padding:8px 12px;background:#ffffff9c;border-radius:30px}.brand-art{font-size:110px;line-height:1.2;filter:drop-shadow(0 10px 15px #a2684c36);margin:30px 0 10px}
+.login-pane{display:flex;align-items:center;justify-content:center;padding:30px 22px}.form-wrap{width:min(100%,430px)}.eyebrow{color:var(--orange);font-weight:700;letter-spacing:1.5px;font-size:11px}h2{font:600 36px Fredoka,sans-serif;margin:10px 0 10px}.muted{color:#8d796d;line-height:1.7;font-size:13px;margin:0 0 34px}label{display:block;font-weight:700;margin:20px 0 9px;font-size:13px}input{display:block;width:100%;padding:15px 16px;border:1px solid #e4d6c9;border-radius:14px;background:white;color:var(--brown);font:inherit}input:focus{outline:2px solid #d9775770;border-color:var(--orange)}button{border:0;background:var(--orange);color:white;border-radius:14px;padding:15px 18px;font:700 14px 'Plus Jakarta Sans';width:100%;margin-top:25px;cursor:pointer}button:disabled{opacity:.65;cursor:wait}
+a{color:#ac5b41}.info{margin-top:22px;padding:14px;border:1px solid #efdfca;border-radius:13px;background:#fff5e9;font-size:12px;line-height:1.6;color:#80684f}.feedback{display:none;margin-top:16px;border-radius:12px;padding:12px 13px;line-height:1.5;font-size:12px;background:#fcebe5;color:#983f2e}.feedback.visible{display:block}.footer{margin-top:29px;text-align:center;color:#9a877b;font-size:12px}@media(max-width:850px){body{grid-template-columns:1fr}.brand-pane{padding:25px;gap:12px}.brand-pane h1{font-size:27px}.brand-art{display:none}.feature{margin-top:12px}.login-pane{padding:38px 20px}h2{font-size:30px}}
+</style></head><body>
+<section class="brand-pane"><div class="logo"><div class="logo-mark">U</div><div><strong>Upiek Cake</strong><small>Manajemen &amp; Penjualan</small></div></div>
+<div><div class="brand-art" aria-hidden="true">🧺 🌿</div><h1>Hangat, Modern,<br>Tradisional.</h1><p>Satu tempat untuk mengelola penjualan outlet dan PO konsumsi rapat dengan identitas Upiek Cake.</p><div class="feature"><span>Kasir Outlet</span><span>PO Rapat</span><span>Manajemen</span></div></div><div style="font-size:12px;color:#886a56">UCGSO · Modern Nusantara</div></section>
+<section class="login-pane"><main class="form-wrap"><div class="eyebrow">AKSES STAF UCGSO</div><h2>Selamat datang!</h2><p class="muted">Masuk menggunakan email dan password staf yang telah didaftarkan oleh pengelola UCGSO.</p>
+<form id="login-form"><label for="email">Email staf</label><input id="email" type="email" autocomplete="username" placeholder="nama@contoh.com" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required minlength="6">
+<button id="submit" type="submit">Masuk ke UCGSO</button></form>
+<div id="feedback" class="feedback" role="alert"></div><div class="info">🔒 Hanya staf yang aktif dan disetujui dapat masuk. Belum ada fitur pendaftaran mandiri. <b>Dashboard dan transaksi masih simulasi</b> sampai modul penyimpanan diselesaikan.</div>
+<div class="footer"><a href="index.html">Lihat demo publik</a> · UCGSO © 2026</div></main></section>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/+esm';
+const sb=createClient("https://xwpfanlkyhdgcmqmbgma.supabase.co","sb_publishable_gQpFKR5DwEZV6RzvT_d2EA_M3Ybhgnd",{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
+const form=document.getElementById('login-form');const submit=document.getElementById('submit');const box=document.getElementById('feedback');
+function show(text){box.textContent=text;box.classList.add('visible')}
+async function verify(user){
+ if(!user)return false;
+ const {data,error}=await sb.from('staff_profiles').select('user_id,staff_role,active').eq('user_id',user.id).maybeSingle();
+ if(error)throw new Error('Tidak dapat memverifikasi izin staf.');
+ if(!data||!data.active||!['owner','manager','cashier','sales'].includes(data.staff_role)){await sb.auth.signOut();throw new Error('Akun belum diaktifkan sebagai staf UCGSO. Hubungi Owner.')}
+ return true;
+}
+try{const {data:{user}}=await sb.auth.getUser();if(user&&await verify(user))location.replace('app.html');}catch(e){show(e.message)}
+form.addEventListener('submit',async e=>{e.preventDefault();box.classList.remove('visible');submit.disabled=true;submit.textContent='Memverifikasi…';
+try{const email=document.getElementById('email').value.trim();const password=document.getElementById('password').value;
+const {data,error}=await sb.auth.signInWithPassword({email,password});
+if(error||!data.user)throw new Error('Login gagal. Periksa email/password dan status akun.');
+await verify(data.user);location.replace('app.html');
+}catch(err){show(err.message||'Login gagal, silakan ulangi.');}finally{submit.disabled=false;submit.textContent='Masuk ke UCGSO';}
+});
+</script></body></html>
